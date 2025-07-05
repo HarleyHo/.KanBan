@@ -2,26 +2,31 @@ package com.vsagile.vsagilebackend.pojo.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 
 /**
  * DTO for {@link com.vsagile.vsagilebackend.pojo.Task}
  */
-@Value
+@AllArgsConstructor
+@Getter
+@ToString
 public class TaskDto implements Serializable {
-    Integer id;
+    private final Integer id;
     @NotNull
     @Size(max = 50)
-    String taskName;
+    private final String taskName;
     @Size(max = 1000)
-    String description;
-    Integer assignees;
-    Integer priority;
-    Instant dueTime;
-    Instant startTime;
-    Instant endTime;
-    Integer status;
+    private final String description;
+    private final Integer assignee;
+    private final Integer priority;
+    private final LocalDate dueTime;
+    private final LocalDate startTime;
+    private final LocalDate endTime;
+    private final Integer status;
+    private final EventDto event;
 }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -27,26 +27,26 @@ public class Task {
     @Column(name = "description", length = 1000)
     private String description;
 
-    @Column(name = "assignees")
-    private Integer assignees;
+    @Column(name = "assignee")
+    private Integer assignee;
 
     @Column(name = "priority")
     private Integer priority;
 
     @Column(name = "due_time")
-    private Instant dueTime;
+    private LocalDate dueTime;
 
     @Column(name = "start_time")
-    private Instant startTime;
+    private LocalDate startTime;
 
     @Column(name = "end_time")
-    private Instant endTime;
+    private LocalDate endTime;
 
     @Column(name = "status")
     private Integer status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id")
-    private Project project;
+    @JoinColumn(name = "event_id")
+    private Event event;
 
 }

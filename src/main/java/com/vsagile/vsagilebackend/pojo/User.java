@@ -24,14 +24,14 @@ public class User {
     private String password;
 
     @Size(max = 255)
-    @Column(name = "nickname")
-    private String nickname;
-
-    @Size(max = 255)
     @Column(name = "email")
     private String email;
 
     @Column(name = "role")
     private Integer role;
+
+    @Size(max = 100)
+    @Column(name = "icon_url", length = 100)
+    private String iconUrl;
 
 }
