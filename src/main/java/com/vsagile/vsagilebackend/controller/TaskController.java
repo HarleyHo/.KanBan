@@ -1,8 +1,8 @@
 package com.vsagile.vsagilebackend.controller;
 
 import com.vsagile.vsagilebackend.pojo.ResponseMessage;
-import com.vsagile.vsagilebackend.pojo.Task;
-import com.vsagile.vsagilebackend.pojo.dto.TaskDto;
+import com.vsagile.vsagilebackend.pojo.po.Task;
+import com.vsagile.vsagilebackend.pojo.dto.TaskDTO;
 import com.vsagile.vsagilebackend.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +16,7 @@ public class TaskController {
     ITaskService taskService;
 
     @PostMapping
-    public ResponseMessage<?> addTask(@Validated @RequestBody TaskDto taskDto){
+    public ResponseMessage<?> addTask(@Validated @RequestBody TaskDTO taskDto){
         Task task = taskService.add(taskDto);
         return ResponseMessage.success(task);
     }
@@ -28,7 +28,7 @@ public class TaskController {
     }
 
     @PutMapping
-    public ResponseMessage<?> editTask(@Validated @RequestBody TaskDto taskDto) {
+    public ResponseMessage<?> editTask(@Validated @RequestBody TaskDTO taskDto) {
         Task task = taskService.edit(taskDto);
         return ResponseMessage.success(task);
     }

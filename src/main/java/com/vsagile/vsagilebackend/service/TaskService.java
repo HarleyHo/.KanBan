@@ -1,8 +1,8 @@
 package com.vsagile.vsagilebackend.service;
 
-import com.vsagile.vsagilebackend.dao.TaskRepository;
-import com.vsagile.vsagilebackend.pojo.Task;
-import com.vsagile.vsagilebackend.pojo.dto.TaskDto;
+import com.vsagile.vsagilebackend.repository.TaskRepository;
+import com.vsagile.vsagilebackend.pojo.po.Task;
+import com.vsagile.vsagilebackend.pojo.dto.TaskDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class TaskService implements ITaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public Task add(TaskDto taskDto) {
+    public Task add(TaskDTO taskDto) {
         Task taskPojo = new Task();
         BeanUtils.copyProperties(taskDto, taskPojo);
         return taskRepository.save(taskPojo);
@@ -26,7 +26,7 @@ public class TaskService implements ITaskService {
     }
 
     @Override
-    public Task edit(TaskDto taskDto) {
+    public Task edit(TaskDTO taskDto) {
         Task taskPojo = new Task();
         BeanUtils.copyProperties(taskDto, taskPojo);
         return taskRepository.save(taskPojo);

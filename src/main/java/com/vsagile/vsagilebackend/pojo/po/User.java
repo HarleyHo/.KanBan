@@ -1,4 +1,4 @@
-package com.vsagile.vsagilebackend.pojo;
+package com.vsagile.vsagilebackend.pojo.po;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -17,7 +17,7 @@ public class User {
 
     @Size(max = 255)
     @Column(name = "user_name")
-    private String userName;
+    private String name;
 
     @Size(max = 255)
     @Column(name = "password")

@@ -1,6 +1,6 @@
-package com.vsagile.vsagilebackend.dao;
+package com.vsagile.vsagilebackend.repository;
 
-import com.vsagile.vsagilebackend.pojo.User;
+import com.vsagile.vsagilebackend.pojo.po.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

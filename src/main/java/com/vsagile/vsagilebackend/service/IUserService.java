@@ -1,17 +1,18 @@
 package com.vsagile.vsagilebackend.service;
 
 
-import com.vsagile.vsagilebackend.pojo.User;
-import com.vsagile.vsagilebackend.pojo.dto.UserDto;
+import com.vsagile.vsagilebackend.pojo.dto.UserCreateDTO;
+import com.vsagile.vsagilebackend.pojo.dto.UserDTO;
+import com.vsagile.vsagilebackend.pojo.vo.UserVO;
 
 public interface IUserService {
-    User add(UserDto userDto);
+    UserVO add(UserCreateDTO userCreateDto);
 
-    User get(Integer userId);
+    UserVO get(Integer userId);
 
-    User edit(UserDto userDto);
+    UserVO edit(UserDTO userDto);
 
     void delete(Integer userId);
 
-    Iterable<User> getAll();
+    Iterable<UserVO> getAll();
 }

@@ -1,4 +1,4 @@
-package com.vsagile.vsagilebackend.utils;
+package com.vsagile.vsagilebackend.config;
 
 import io.micrometer.common.lang.NonNullApi;
 import jakarta.annotation.PreDestroy;
@@ -10,7 +10,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
-import com.vsagile.vsagilebackend.utils.SSHProperties.Forward;
+import com.vsagile.vsagilebackend.config.SSHProperties.Forward;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.weaving.LoadTimeWeaverAware;
 import org.springframework.instrument.classloading.LoadTimeWeaver;

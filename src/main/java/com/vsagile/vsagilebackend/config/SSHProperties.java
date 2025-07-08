@@ -1,4 +1,4 @@
-package com.vsagile.vsagilebackend.utils;
+package com.vsagile.vsagilebackend.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

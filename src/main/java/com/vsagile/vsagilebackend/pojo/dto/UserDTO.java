@@ -8,15 +8,15 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.vsagile.vsagilebackend.pojo.User}
+ * DTO for {@link com.vsagile.vsagilebackend.pojo.po.User}
  */
 @AllArgsConstructor
 @Getter
 @ToString
-public class UserDto implements Serializable {
+public class UserDTO implements Serializable {
     private final Integer id;
     @Size(max = 255)
-    private final String userName;
+    private final String name;
     @Size(max = 255)
     private final String password;
     @Size(max = 255)

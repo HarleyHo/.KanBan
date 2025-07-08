@@ -1,11 +1,16 @@
 package com.vsagile.vsagilebackend.service;
 
-import com.vsagile.vsagilebackend.dao.UserRepository;
-import com.vsagile.vsagilebackend.pojo.User;
-import com.vsagile.vsagilebackend.pojo.dto.UserDto;
+import com.vsagile.vsagilebackend.pojo.dto.UserDTO;
+import com.vsagile.vsagilebackend.repository.UserRepository;
+import com.vsagile.vsagilebackend.pojo.po.User;
+import com.vsagile.vsagilebackend.pojo.dto.UserCreateDTO;
+import com.vsagile.vsagilebackend.pojo.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UserService implements IUserService {
@@ -13,23 +18,34 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public User add(UserDto userDto) {
-        User userPojo = new User();
-        BeanUtils.copyProperties(userDto, userPojo);
-        return userRepository.save(userPojo);
+    private UserVO convertToVO(User user) {
+        return new UserVO(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole(),
+                user.getIconUrl()
+        );
     }
 
     @Override
-    public User get(Integer userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public UserVO add(UserCreateDTO userCreateDto) {
+        User userPojo = new User();
+        BeanUtils.copyProperties(userCreateDto, userPojo);
+        return convertToVO(userRepository.save(userPojo));
     }
 
     @Override
-    public User edit(UserDto userDto) {
+    public UserVO get(Integer userId) {
+        User userPojo = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return convertToVO(userPojo);
+    }
+
+    @Override
+    public UserVO edit(UserDTO userDto) {
         User userPojo = new User();
         BeanUtils.copyProperties(userDto, userPojo);
-        return userRepository.save(userPojo);
+        return convertToVO(userRepository.save(userPojo));
     }
 
     @Override
@@ -38,8 +54,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Iterable<User> getAll() {
-        return userRepository.findAll();
+    public Iterable<UserVO> getAll() {
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+                .map(this::convertToVO).collect(Collectors.toList());
     }
 
 

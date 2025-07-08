@@ -1,14 +1,23 @@
 package com.vsagile.vsagilebackend.service;
 
-import com.vsagile.vsagilebackend.pojo.Event;
-import com.vsagile.vsagilebackend.pojo.dto.EventDto;
+import com.vsagile.vsagilebackend.pojo.dto.EventCreateDTO;
+import com.vsagile.vsagilebackend.pojo.po.Event;
+import com.vsagile.vsagilebackend.pojo.dto.EventDTO;
+import com.vsagile.vsagilebackend.pojo.vo.EventVO;
+import com.vsagile.vsagilebackend.pojo.vo.TaskVO;
+
+import java.util.Set;
 
 public interface IEventService {
-    Event add(EventDto projectDto);
+    EventVO add(EventCreateDTO eventCreateDto);
 
-    Event get(Integer projectId);
+    EventVO get(Integer eventId);
 
-    Event edit(EventDto projectDto);
+    EventVO edit(EventDTO eventDto);
 
-    void delete(Integer projectId);
+    void delete(Integer eventId);
+
+    Iterable<EventVO> getAll();
+
+    Iterable<TaskVO> getTasks(Integer eventId);
 }

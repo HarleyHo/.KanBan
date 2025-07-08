@@ -1,11 +1,11 @@
-package com.vsagile.vsagilebackend.pojo;
+package com.vsagile.vsagilebackend.pojo.po;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,24 +21,21 @@ public class Event {
 
     @Size(max = 50)
     @Column(name = "event_name", length = 50)
-    private String eventName;
+    private String name;
 
-    @NotNull
     @Column(name = "manager_id", nullable = false)
     private Integer managerId;
 
     @Column(name = "status")
     private Integer status;
 
-    @Size(max = 255)
     @Column(name = "start_date")
-    private String startDate;
+    private LocalDate startDate;
 
-    @Size(max = 255)
     @Column(name = "end_date")
-    private String endDate;
+    private LocalDate endDate;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private Set<Task> tasks = new LinkedHashSet<>();
 
 }

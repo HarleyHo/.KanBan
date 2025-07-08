@@ -2,8 +2,9 @@ package com.vsagile.vsagilebackend.controller;
 
 
 import com.vsagile.vsagilebackend.pojo.ResponseMessage;
-import com.vsagile.vsagilebackend.pojo.User;
-import com.vsagile.vsagilebackend.pojo.dto.UserDto;
+import com.vsagile.vsagilebackend.pojo.dto.UserCreateDTO;
+import com.vsagile.vsagilebackend.pojo.dto.UserDTO;
+import com.vsagile.vsagilebackend.pojo.vo.UserVO;
 import com.vsagile.vsagilebackend.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -16,22 +17,22 @@ public class UserController {
     @Autowired
     IUserService userService;
 
-    @PostMapping
-    public ResponseMessage<?> addUser(@Validated @RequestBody UserDto userDto){
-        User user = userService.add(userDto);
-        return ResponseMessage.success(user);
+    @PostMapping("/add")
+    public ResponseMessage<?> addUser(@Validated @RequestBody UserCreateDTO userCreateDto){
+        UserVO userVo = userService.add(userCreateDto);
+        return ResponseMessage.success(userVo);
     }
 
     @GetMapping("/{userId}")
     public ResponseMessage<?> getUser(@PathVariable Integer userId) {
-        User user = userService.get(userId);
-        return ResponseMessage.success(user);
+        UserVO userVo = userService.get(userId);
+        return ResponseMessage.success(userVo);
     }
 
-    @PutMapping
-    public ResponseMessage<?> editUser(@Validated @RequestBody UserDto userDto) {
-        User user = userService.edit(userDto);
-        return ResponseMessage.success(user);
+    @PutMapping("/edit")
+    public ResponseMessage<?> editUser(@Validated @RequestBody UserDTO userDto) {
+        UserVO userVo = userService.edit(userDto);
+        return ResponseMessage.success(userVo);
     }
 
     @DeleteMapping("/{userId}")
@@ -42,7 +43,7 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseMessage<?> getAllUsers() {
-        Iterable<User> userList = userService.getAll();
+        Iterable<UserVO> userList = userService.getAll();
         return ResponseMessage.success(userList);
     }
 }

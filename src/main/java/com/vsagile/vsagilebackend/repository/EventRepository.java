@@ -1,6 +1,6 @@
-package com.vsagile.vsagilebackend.dao;
+package com.vsagile.vsagilebackend.repository;
 
-import com.vsagile.vsagilebackend.pojo.Event;
+import com.vsagile.vsagilebackend.pojo.po.Event;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
